@@ -1,43 +1,122 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RSA Key Generation, Encryption, and Decryption</title>
-  <script src="RSA.js" type="text/javascript">
-    "use strict";
-  </script>
-  <link rel="stylesheet" href="RSA.css">
+  <title>RSA Encryption/Decryption</title>
+  
+  <style>
+    body {
+      background: linear-gradient(to bottom, #004e92, #000428);
+      color: #fff;
+      font-family: 'Open Sans', sans-serif;
+    }
+    
+    h1 {
+      font-size: 36px;
+      text-align: center;
+      text-shadow: 2px 2px #003049;
+    }
+    
+    section {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background: rgba(0,75,73,0.8);
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px #000; 
+    }
+    
+    label {
+      font-size: 18px; 
+      font-weight: 600;
+    }
+    
+    input[type="text"], 
+    textarea {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 2px solid #00b4d8;
+      border-radius: 4px;
+      background-color: #003049;
+      color: #fff;
+      font-size: 16px;
+    }
+    
+    button {
+      width: 100%;
+      background-color: #00b4d8;
+      color: #000428;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #00a2c6;
+    }
+
+  </style>
+  
 </head>
+
 <body>
-  <h1>RSA Key Generation, Encryption, and Decryption</h1>
-  <label for="p">Enter a prime number P:</label>
-  <input type="number" id="p">
-  <br>
-  <label for="q">Enter a prime number Q:</label>
-  <input type="number" id="q">
-  <br>
-  <button onclick="generateKeys()">Generate Keys</button>
-  <br>
-  <label for="n">N:</label>
-  <input type="number" id="n" disabled>
-  <br>
-  <label for="e">Public Key (E):</label>
-  <input type="number" id="e" disabled>
-  <br>
-  <label for="d">Private Key (D):</label>
-  <input type="number" id="d" disabled>
-  <br>
-  <label for="message">Enter message to encrypt:</label>
-  <input type="text" id="message">
-  <button onclick="encryptMessage()">Encrypt</button>
-  <br>
-  <label for="encrypted-message">Encrypted Message:</label>
-  <div id="encrypted-message"></div>
-  <br>
-  <label for="encrypted-message-textbox">Encrypted Message (as numbers):</label>
-  <input type="text" id="encrypted-message-textbox">
-  <button onclick="decryptMessage()">Decrypt</button>
-  <br>
-  <label for="decrypted-message">Decrypted Message:</label>
-  <div id="decrypted-message"></div>
+
+  <h1>RSA Encryption/Decryption</h1>
+
+  <section>
+  
+    <label for="p">Enter Prime Number P:</label>
+    <input type="text" id="p">
+
+    <label for="q">Enter Prime Number Q:</label>
+    <input type="text" id="q">
+    
+    <button onclick="calculate()">Calculate Keys</button>
+    
+    <h2>Generated Keys</h2>
+
+    <p>
+      N: <span id="n"></span>
+      <br>
+      L: <span id="l"></span> 
+    </p>
+
+    <p>
+      Public Key: (<span id="e"></span>, <span id="n"></span>)
+      <br>
+      Private Key: (<span id="d"></span>, <span id="n"></span>)
+    </p>
+    
+    <div id="encryption-keys"></div>
+    <div id="decryption-keys"></div>
+    
+    <h2>Encrypt/Decrypt Message</h2>
+  
+    <label for="message">Enter Message:</label>
+    <textarea id="message"></textarea>
+    
+    <button onclick="encryptMessage()">Encrypt Message</button>
+    
+    <p>
+      Encrypted Message: <span id="encrypted-message"></span>
+    </p>
+    
+    <textarea id="encrypted-message-textbox"></textarea>
+    
+    <button onclick="decryptMessage()">Decrypt Message</button>
+
+    <p>
+      Decrypted Message: <span id="decrypted-message"></span>
+    </p>
+
+  </section>
+
+  <script src="RSA.js">
+    
+  </script>
 </body>
 </html>
